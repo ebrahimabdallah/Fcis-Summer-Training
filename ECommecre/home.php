@@ -27,9 +27,9 @@
                             <div class="col">
                             <div class="card shadow-sm ">
                                 
-                                <div class="card-body " >
-                                    <img src="images/<?php echo $product['image']; ?>" alt="Product Image" style="width: 100% ">
-                                    <p class="card-title">name: <?php echo $product['name']; ?></p>
+                                <div class="card-body" >
+                                    <img src="images/<?php echo $product['image']; ?>" alt="Product Image" style="width:60%">
+                                    <p class="card-title" ></p>name: <?php echo $product['name'];  ?></p>
                                     <p >price: <?php echo $product['price']; ?> LE</p>
                                     <p </p>description: <?php echo $product['description']; ?></p>
                                 

@@ -1,7 +1,7 @@
 <?php
 include('../database.php');
 include('../template/nav.php');
-
+// include('../admin/deleteProduct.php');
 $connection = mysqli_connect($host, $user, $pass, $db);
 $query = "SELECT * FROM products";
 $result = mysqli_query($connection, $query);
@@ -13,26 +13,50 @@ $result = mysqli_query($connection, $query);
             <a href="add.php" class="btn btn-primary">Add Products</a>
             <h3>Product Controller</h3>
             <hr>
-            <?php include('csstable.php'); ?>
+
+            <?php include('csstable.php');             
+            ?>
+
+            <?php
+            if(isset($_SESSION['delete_msg']))
+            {
+                echo $_SESSION['delete_msg'];
+                unset($_SESSION['delete_msg']);
+            }
+            ?>
             <div class="table-responsive">
-                <table id="table">
+
+            <table id="table">
                     <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Image</th>
-                        <th>Description</th>
+                    <th>#</th>
+
+                    <th>Image</th>
+                    <th>Product</th>
+                     <th>Price</th>
+                     <th>Description</th>
+                      <th>Actions</th>
+
                     </tr>
                     <?php
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
                             ?>
                             <tr>
-                                <td><?= $row['name'] ?></td>
-                                <td><?= $row['price'] ?></td>
-                                <td class="w-25">
+                            <td><?= $row['id'] ?></td>
+
+                            <td class="w-25">
                                     <img class="w-100" src="../images/<?= $row['image'] ?>" alt="<?= $row['name'] ?>">
-                                </td>
+                                </td>   
+                            <td><?= $row['name'] ?></td>
+                                <td><?= $row['price'] ?></td>
+                               
                                 <td><?= $row['description'] ?></td>
+                                <td>
+                                    <a href="update.php?id=<?=$row['id']?>" class="btn btn-primary">Edit</a>
+                                    <a href="deleteProduct.php?id=<?= $row['id'] ?>" class="btn btn-danger">Delete</a>
+                                
+                                </td>
+
                             </tr>
                             <?php
                         }

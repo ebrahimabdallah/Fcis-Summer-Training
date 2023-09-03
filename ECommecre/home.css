@@ -69,6 +69,33 @@
       .bd-mode-toggle {
         z-index: 1500;
       }
+
+      .card {
+        margin-bottom: 20px;
+      }
+      
+      .card-img-top {
+        width: 100px;
+        object-fit: contain;
+      }
+      
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      
+      .card-title, 
+      .price,
+      .description {
+        margin-bottom: 5px;  
+      }
+      .row {
+        gap: 20px; 
+      }
+      .title {
+        text-align: center;
+      }
    
 
     
