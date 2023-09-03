@@ -1,6 +1,6 @@
 # Ecommerce Project
 
-This is a native eCommerce project developed using PHP, MySQL, OOP, HTML, and CSS.
+This is a native Ecommerce project developed using PHP, MySQL, OOP, HTML, and CSS.
 
 ## Tools Used
 
