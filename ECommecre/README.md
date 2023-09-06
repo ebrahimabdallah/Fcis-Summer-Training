@@ -6,7 +6,6 @@ This is a native Ecommerce project
 
 - PHP
 - MySQL
-- OOP
 - HTML
 - CSS
 
