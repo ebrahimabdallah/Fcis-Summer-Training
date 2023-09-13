@@ -1,7 +1,8 @@
 <?php
-include('../database.php');
-include('../template/nav.php');
-// include('../admin/deleteProduct.php');
+@include('../database.php');
+@include('../template/nav.php');
+@include('../functions.php');
+
 $connection = mysqli_connect($host, $user, $pass, $db);
 $query = "SELECT * FROM products";
 $result = mysqli_query($connection, $query);
@@ -11,6 +12,8 @@ $result = mysqli_query($connection, $query);
     <div class="row mb-4 p-3">
         <div class="col-9 p-3">
             <a href="add.php" class="btn btn-primary">Add Products</a>
+            <a href="Category/index.php" class="btn btn-primary">Category</a>
+            
             <h3>Product Controller</h3>
             <hr>
 
@@ -50,7 +53,11 @@ $result = mysqli_query($connection, $query);
                             <td><?= $row['name'] ?></td>
                                 <td><?= $row['price'] ?></td>
                                
-                                <td><?= $row['description'] ?></td>
+                                <td>
+                                 <?php 
+                                  echo words($row['description'],3); 
+                                  ?>
+                                 </td>
                                 <td>
                                     <a href="update.php?id=<?=$row['id']?>" class="btn btn-primary">Edit</a>
                                     <a href="deleteProduct.php?id=<?= $row['id'] ?>" class="btn btn-danger">Delete</a>

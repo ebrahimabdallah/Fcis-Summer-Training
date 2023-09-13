@@ -10,17 +10,24 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
-                
+              <?php
+                include('../database.php');
+                $query = "SELECT * FROM category";
+                $category = mysqli_query($connection, $query);
+                while ($categories = mysqli_fetch_assoc($category)) {
+                ?>
                   <li class="nav-item">
-                    <a class="nav-link link-body-element" href="#">Home</a>
+                    <a class="nav-link link-body-element" 
+                    href="?Categ_id=<?php echo $categories['id']; ?>">
+                      <?php echo $categories['name']; ?>
+                    </a>
                   </li>
-                
+                <?php } ?>
               </ul>
             </div>
           </div>
         </nav>
       </a>
-
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

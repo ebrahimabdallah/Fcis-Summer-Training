@@ -1,10 +1,12 @@
 <?php
 include('../template/nav.php');
 include('../database.php');
+include('../functions.php');
 
 if (isset($_POST["Update"])) {
     $id = $_POST['id'];
     $price = $_POST['price'] ?? '';
+    $category_id = $_POST['category'] ?? '';
     $name = $_POST['name'] ?? '';
     $description = $_POST['description'] ?? '';
 
@@ -17,18 +19,19 @@ if (isset($_POST["Update"])) {
         $image = $_POST['old_image'];
     }
 
-    $query = "UPDATE products SET name='$name', price='$price', description='$description', image='$image', created_at=NOW() WHERE id=$id";
+    $query = "UPDATE products SET name = '$name', price = '$price', description = '$description', image = '$image', category_id = '$category_id' WHERE id = $id";
     $result = mysqli_query($connection, $query);
 
     if ($result) {
         echo "<div class=\"alert alert-success\">
                 The product has been updated successfully!
               </div>";
-    }
+              header('Location: products.php');    
+            }
 }
 
 $id = $_GET['id'];
-$queryEdit = "SELECT * FROM products WHERE id=$id";
+$queryEdit = "SELECT * FROM products WHERE id = $id";
 $resultEdit = mysqli_query($connection, $queryEdit);
 $product = mysqli_fetch_assoc($resultEdit);
 
@@ -52,6 +55,25 @@ $product = mysqli_fetch_assoc($resultEdit);
                     <label for="price" class="form-label">Price</label>
                     <input type="text" value="<?= $product['price'] ?>" required class="form-control" id="price" name="price" aria-describedby="price">
                 </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select class="form-select" id="category" name="category">
+                        <option value="">Select Category</option>
+                        <?php
+                        $categories = getAllCategories();
+                        while ($category = mysqli_fetch_assoc($categories)) :
+                            $categoryId = $category['id'];
+                            $categoryName = $category['name'];
+                            $selected = ($categoryId == $product['category_id']) ? 'selected' : '';
+                            ?>
+                            <option value="<?php echo $categoryId; ?>" <?php echo $selected; ?>>
+                                <?php echo $categoryName; ?>
+                            </option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+
                 <div class="mb-3">
                     <label class="form-label" for="image">Image Of Product</label>
                     <input type="file" id="image" name="image" class="form-control">
