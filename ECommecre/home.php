@@ -7,29 +7,41 @@ $q = "SELECT * FROM products";
 if (isset($_GET['Categ_id'])) {
     $q .= " WHERE category_id={$_GET['Categ_id']} ";
 }
-$products = mysqli_query($connection, $q);
-?>
 
+if(isset($_GET['search']))
+{
+ $q .=" WHERE name like '%{$_GET['search']}%' OR price like '%{$_GET['search']}%' ";
+}
+
+$products = mysqli_query($connection, $q);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js" integrity="sha512-fHY2UiQlipUq0dEabSM4s+phmn+bcxSYzXP4vAXItBvBHU7zAM/mkhCZjtBEIJexhOMzZbgFlPLuErlJF2b+0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css" integrity="sha512-1p1so9oJYwTF9sX+QJK5K0R5LZdS7i7C5kI0LmR4GgFQeNzqz9SFd0Pq8z2DKD4uGy6LDgR53qZbL0y8ZG8k1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <main>
-  <center>
-    <div>
-      <h1>All Products</h1>
-    </div>
-  </center>
-
+  
   <?php if (mysqli_num_rows($products) > 0) : ?>
     <div class="album py-5 bg-body-tertiary">
       <div class="container">
+
+      <form action="" method="GET">
+   <div class="input-group">
+      <input type="text" class="form-control" name="search" id="search" placeholder="Search this blog">
+      <div class="input-group-append">
+        
+  
+      </div>
+   </div>
+</form>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <?php while ($product = mysqli_fetch_assoc($products)) : ?>
             <div class="col">

@@ -4,7 +4,9 @@
 @include('../functions.php');
 
 $connection = mysqli_connect($host, $user, $pass, $db);
-$query = "SELECT * FROM products";
+// $query = "SELECT * FROM products";
+$query = "SELECT `products`.`id`,`products`.`name`,`products`.`image`, `category`.`name`AS CaName FROM `products` INNER JOIN `category` ON `products`.`category_id`=`category`.`id`;";
+
 $result = mysqli_query($connection, $query);
 ?>
 
@@ -35,8 +37,8 @@ $result = mysqli_query($connection, $query);
 
                     <th>Image</th>
                     <th>Product</th>
-                     <th>Price</th>
-                     <th>Description</th>
+                     <th>category</th>
+                  
                       <th>Actions</th>
 
                     </tr>
@@ -51,13 +53,9 @@ $result = mysqli_query($connection, $query);
                                     <img class="w-100" src="../images/<?= $row['image'] ?>" alt="<?= $row['name'] ?>">
                                 </td>   
                             <td><?= $row['name'] ?></td>
-                                <td><?= $row['price'] ?></td>
+                                <td><?= $row['CaName'] ?></td>
                                
-                                <td>
-                                 <?php 
-                                  echo words($row['description'],3); 
-                                  ?>
-                                 </td>
+                             
                                 <td>
                                     <a href="update.php?id=<?=$row['id']?>" class="btn btn-primary">Edit</a>
                                     <a href="deleteProduct.php?id=<?= $row['id'] ?>" class="btn btn-danger">Delete</a>
