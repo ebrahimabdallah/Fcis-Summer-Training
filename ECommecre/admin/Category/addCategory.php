@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="row mb-5 p-5">
         <div class="col-9 p-3">
             <h3>Add Category</h3>
+            
             <a href="../Category/index.php" class="btn btn-primary">All Category</a>
             <a href="../products.php" class="btn btn-primary">All Products</a>
 

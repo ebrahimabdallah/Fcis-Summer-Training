@@ -1,4 +1,5 @@
 <?php
+
 include('../database.php');
 
 // Fetch the product ID from the GET parameters

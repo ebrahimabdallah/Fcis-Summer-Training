@@ -1,4 +1,5 @@
 <?php
+
 include('../template/nav.php');
 include('../database.php');
 include('../functions.php');

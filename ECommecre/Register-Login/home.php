@@ -1,7 +1,13 @@
 <?php 
-@include('database.php');
-@include('template/navHome.php');
-@include('functions.php');
+session_start();
+if(!isset($_SESSION["user"]))
+{
+  header("Location:login.php");
+}
+
+@include('../database.php');
+@include('../template/navHome.php');
+@include('../functions.php');
 
 $q = "SELECT * FROM products";
 if (isset($_GET['Categ_id'])) {
@@ -46,13 +52,13 @@ $products = mysqli_query($connection, $q);
           <?php while ($product = mysqli_fetch_assoc($products)) : ?>
             <div class="col">
               <div class="card h-100 shadow-sm">
-                <img src="images/<?php echo $product['image']; ?>" alt="Product Image" class="card-img-top" style="width: 100%; object-fit: cover; height: 200px;">
+                <img src="../images/<?php echo $product['image']; ?>" alt="Product Image" class="card-img-top" style="width: 100%; object-fit: cover; height: 200px;">
                 <div class="card-body d-flex flex-column justify-content-between">
                   <h5 class="card-title"><?php echo $product['name']; ?></h5>
                   <p class="card-text"><?php echo words($product['description'], 5); ?></p>
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="card-text mb-0">Price: <?php echo $product['price']; ?> LE</p>
-                    <a href="details/details.php?id=<?php echo $product['id']; ?>" class="btn btn-primary">View Details</a>
+                    <a href="../details/details.php?id=<?php echo $product['id']; ?>" class="btn btn-primary">View Details</a>
                   </div>
                 </div>
               </div>
@@ -69,7 +75,7 @@ $products = mysqli_query($connection, $q);
 </main>
 
 <?php
-@include('template/footer.php');
+@include('../template/footer.php');
 ?>
 </body>
 </html>

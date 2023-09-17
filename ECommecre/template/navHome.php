@@ -18,6 +18,7 @@
                       Products All
                     </a>
                   </li>
+
              
              <?php
                 include('../database.php');
@@ -32,14 +33,20 @@
                     </a>
                   </li>
                 <?php } ?>
+
+      <li class="nav-item">
+      <a class="nav-link link-body-element" href="../Register-Login/logout.php">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </a>
+    </li>
+    
               </ul>
             </div>
           </div>
         </nav>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    
+
     </div>
   </div>
 </header>

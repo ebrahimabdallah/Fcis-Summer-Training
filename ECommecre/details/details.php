@@ -20,7 +20,7 @@ $product = mysqli_fetch_assoc($result);
                     <h5>Product: <?= $product['name'] ?></h5>
                     <p>Price: <?= $product['price'] ?> LE</p>
                     <p>Details: <?= $product['description'] ?></p>
-                    <a href="../home.php">Back Home</a>
+                    <a href="../Register-Login/home.php">Back Home</a>
 
                 </div>
             </div>
